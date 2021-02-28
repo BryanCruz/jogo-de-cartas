@@ -9,20 +9,23 @@ public class ManageCartas : MonoBehaviour
 {
 	public GameObject carta;        // A carta a ser descartada
 	private bool primeiraCartaSelecionada, segundaCartaSelecionada; // indicadores para cada carta escolhida em cada linha
-	private GameObject carta1, carta2;
-	private string linhaCarta1, linhaCarta2;
+	private GameObject carta1, carta2;      // gameObjects da 1a e 2a carta selecionada
+	private string linhaCarta1, linhaCarta2;    // linha da carta selecionada
 
-	bool timerPausado, timerAcionado;
-	float timer;
+	bool timerPausado, timerAcionado;           // indicador de pausa no timer ou start times
+	float timer;                                // variavel de tempo
 
-	int numTentativas = -1;
-	int numAcertos = 0;
+	int numTentativas = -1;                     // numero de tentativas na rodada
+	int numAcertos = 0;                         // numero de match de pares acertados
+	AudioSource somOk;                          // som de acerto
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		MostraCartas();
 		UpdateTentativas();
+
+		somOk = GetComponent<AudioSource>();
 	}
 
 	// Update is called once per frame
@@ -40,6 +43,8 @@ public class ManageCartas : MonoBehaviour
 
 				if ( carta1.tag == carta2.tag )
 				{
+					somOk.Play();
+
 					Destroy( carta1 );
 					Destroy( carta2 );
 
