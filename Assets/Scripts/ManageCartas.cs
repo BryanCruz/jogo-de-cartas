@@ -22,6 +22,7 @@ public class ManageCartas : MonoBehaviour
 	void MostraCartas()
 	{
 		int[] arrayEmbaralhado = CriaArrayEmbaralhado();
+		int[] arrayEmbaralhado2 = CriaArrayEmbaralhado();
 
 		// Instantiate( carta, new Vector3( 0, 0, 0 ), Quaternion.identity );
 		//  AddUmaCarta();
@@ -29,26 +30,32 @@ public class ManageCartas : MonoBehaviour
 		for ( int i = 0; i < 13; i++ )
 		{
 			// AddUmaCarta( i );
-			AddUmaCarta( i, arrayEmbaralhado[i] );
+			// AddUmaCarta( i, arrayEmbaralhado[i] );
+			AddUmaCarta( 0, i, arrayEmbaralhado[i] );
+			AddUmaCarta( 1, i, arrayEmbaralhado2[i] );
 		}
 	}
 
 
-	void AddUmaCarta(int rank, int valor)
+	void AddUmaCarta(int linha, int rank, int valor)
 	{
 		GameObject centro = GameObject.Find( "centroDaTela" );
 
 		float escalaCartaOriginal = carta.transform.localScale.x;
-		float fatorEscalaX = (650 * escalaCartaOriginal) / 100.0f;
+		float fatorEscalaX = (650 * escalaCartaOriginal) / 110.0f;
+		float fatorEscalaY = (945 * escalaCartaOriginal) / 110.0f;
 
 		// Vector3 novaPosicao = new Vector3( centro.transform.position.x + ((rank - 13 / 2) * 1.2f), centro.transform.position.y, centro.transform.position.z );
-		Vector3 novaPosicao = new Vector3( centro.transform.position.x + ((rank - 13 / 2) * fatorEscalaX), centro.transform.position.y, centro.transform.position.z );
+		// Vector3 novaPosicao = new Vector3( centro.transform.position.x + ((rank - 13 / 2) * fatorEscalaX), centro.transform.position.y, centro.transform.position.z );
+		Vector3 novaPosicao = new Vector3( centro.transform.position.x + ((rank - 13 / 2) * fatorEscalaX), centro.transform.position.y + ((linha - 2 / 2) * fatorEscalaY), centro.transform.position.z );
 
 		// GameObject c = Instantiate( carta, new Vector3( 0, 0, 0 ), Quaternion.identity );
 		// GameObject c = Instantiate( carta, new Vector3( rank * 1.5f, 0, 0 ), Quaternion.identity );
 		GameObject c = Instantiate( carta, novaPosicao, Quaternion.identity );
 		c.tag = "" + (valor + 1);
-		c.name = "" + valor;
+
+		// c.name = "" + valor;
+		c.name = "" + linha + "_" + valor;
 
 		string numeroCarta;
 
@@ -81,7 +88,8 @@ public class ManageCartas : MonoBehaviour
 		print( "S1: " + s1 );
 
 		// GameObject.Find( "" + rank ).GetComponent<Tile>().SetCartaOriginal( s1 );
-		GameObject.Find( "" + valor ).GetComponent<Tile>().SetCartaOriginal( s1 );
+		// GameObject.Find( "" + valor ).GetComponent<Tile>().SetCartaOriginal( s1 );
+		GameObject.Find( "" + linha + "_" + valor ).GetComponent<Tile>().SetCartaOriginal( s1 );
 	}
 
 	public int[] CriaArrayEmbaralhado()
