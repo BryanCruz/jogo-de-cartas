@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
 public class ManageCartas : MonoBehaviour
@@ -13,10 +14,13 @@ public class ManageCartas : MonoBehaviour
 	bool timerPausado, timerAcionado;
 	float timer;
 
+	int numTentativas = -1;
+
 	// Start is called before the first frame update
 	void Start()
 	{
 		MostraCartas();
+		UpdateTentativas();
 	}
 
 	// Update is called once per frame
@@ -183,11 +187,18 @@ public class ManageCartas : MonoBehaviour
 	public void VerificaCartas()
 	{
 		DisparaTimer();
+		UpdateTentativas();
 	}
 
 	public void DisparaTimer()
 	{
 		timerPausado = false;
 		timerAcionado = true;
+	}
+
+	void UpdateTentativas()
+	{
+		numTentativas++;
+		GameObject.Find( "numTentativas" ).GetComponent<Text>().text = "Tentativas = " + numTentativas;
 	}
 }
