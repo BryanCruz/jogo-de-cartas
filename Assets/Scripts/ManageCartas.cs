@@ -6,6 +6,12 @@ using UnityEngine.Tilemaps;
 public class ManageCartas : MonoBehaviour
 {
 	public GameObject carta;        // A carta a ser descartada
+	private bool primeiraCartaSelecionada, segundaCartaSelecionada; // indicadores para cada carta escolhida em cada linha
+	private GameObject carta1, carta2;
+	private string linhaCarta1, linhaCarta2;
+
+	bool timerPausado, timerAcionado;
+	float timer;
 
 	// Start is called before the first frame update
 	void Start()
@@ -16,7 +22,39 @@ public class ManageCartas : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if ( timerAcionado )
+		{
+			timer += Time.deltaTime;
+			print( timer );
 
+			if ( timer > 1 )
+			{
+				timerPausado = true;
+				timerAcionado = false;
+
+				if ( carta1.tag == carta2.tag )
+				{
+					Destroy( carta1 );
+					Destroy( carta2 );
+				}
+				else
+				{
+					carta1.GetComponent<Tile>().EscondeCarta();
+					carta2.GetComponent<Tile>().EscondeCarta();
+				}
+
+				primeiraCartaSelecionada = false;
+				segundaCartaSelecionada = false;
+
+				carta1 = null;
+				carta2 = null;
+
+				linhaCarta1 = "";
+				linhaCarta2 = "";
+
+				timer = 0;
+			}
+		}
 	}
 
 	void MostraCartas()
@@ -116,5 +154,40 @@ public class ManageCartas : MonoBehaviour
 		}
 
 		return novoArray;
+	}
+
+	public void CartaSelecionada(GameObject carta)
+	{
+		if ( !primeiraCartaSelecionada )
+		{
+			string linha = carta.name.Substring( 0, 1 );
+			linhaCarta1 = linha;
+
+			primeiraCartaSelecionada = true;
+			carta1 = carta;
+			carta1.GetComponent<Tile>().RevelaCarta();
+		}
+		else if ( primeiraCartaSelecionada && !segundaCartaSelecionada )
+		{
+			string linha = carta.name.Substring( 0, 1 );
+			linhaCarta2 = linha;
+
+			segundaCartaSelecionada = true;
+			carta2 = carta;
+			carta2.GetComponent<Tile>().RevelaCarta();
+
+			VerificaCartas();
+		}
+	}
+
+	public void VerificaCartas()
+	{
+		DisparaTimer();
+	}
+
+	public void DisparaTimer()
+	{
+		timerPausado = false;
+		timerAcionado = true;
 	}
 }

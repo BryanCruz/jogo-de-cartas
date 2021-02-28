@@ -24,14 +24,12 @@ public class Tile : MonoBehaviour
 	{
 		print( "Voce pressionou num Tile" );
 
-		if ( tileRevelada )
-		{
+		/* if ( tileRevelada )
 			EscondeCarta();
-		}
 		else
-		{
-			RevelaCarta();
-		}
+			RevelaCarta(); */    // aqui não se guardava numero de cartas
+
+		GameObject.Find( "gameManager" ).GetComponent<ManageCartas>().CartaSelecionada( gameObject );
 	}
 
 	///	esconde a carta trocando seu sprite para o sprite de trás
