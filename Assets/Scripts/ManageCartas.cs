@@ -33,7 +33,12 @@ public class ManageCartas : MonoBehaviour
 	void AddUmaCarta(int rank)
 	{
 		GameObject centro = GameObject.Find( "centroDaTela" );
-		Vector3 novaPosicao = new Vector3( centro.transform.position.x + ((rank - 13 / 2) * 1.2f), centro.transform.position.y, centro.transform.position.z );
+
+		float escalaCartaOriginal = carta.transform.localScale.x;
+		float fatorEscalaX = (650 * escalaCartaOriginal) / 100.0f;
+
+		// Vector3 novaPosicao = new Vector3( centro.transform.position.x + ((rank - 13 / 2) * 1.2f), centro.transform.position.y, centro.transform.position.z );
+		Vector3 novaPosicao = new Vector3( centro.transform.position.x + ((rank - 13 / 2) * fatorEscalaX), centro.transform.position.y, centro.transform.position.z );
 
 		// GameObject c = Instantiate( carta, new Vector3( 0, 0, 0 ), Quaternion.identity );
 		// GameObject c = Instantiate( carta, new Vector3( rank * 1.5f, 0, 0 ), Quaternion.identity );
