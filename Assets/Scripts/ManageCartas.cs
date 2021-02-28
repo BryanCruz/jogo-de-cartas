@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class ManageCartas : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class ManageCartas : MonoBehaviour
 	float timer;
 
 	int numTentativas = -1;
+	int numAcertos = 0;
 
 	// Start is called before the first frame update
 	void Start()
@@ -40,6 +42,12 @@ public class ManageCartas : MonoBehaviour
 				{
 					Destroy( carta1 );
 					Destroy( carta2 );
+
+					numAcertos++;
+					if ( numAcertos == 13 )
+					{
+						SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+					}
 				}
 				else
 				{
