@@ -57,6 +57,12 @@ public class ManageCartas : MonoBehaviour
 		// c.name = "" + valor;
 		c.name = "" + linha + "_" + valor;
 
+		string naipe;
+		if ( linha == 0 )
+			naipe = "clubs";
+		else
+			naipe = "hearts";
+
 		string numeroCarta;
 
 		/* if ( rank == 0 )
@@ -82,7 +88,7 @@ public class ManageCartas : MonoBehaviour
 		else
 			numeroCarta = "" + (valor + 1);
 
-		string nomeDaCarta = numeroCarta + "_of_clubs";
+		string nomeDaCarta = numeroCarta + "_of_" + naipe;
 
 		Sprite s1 = Resources.Load<Sprite>( nomeDaCarta );
 		print( "S1: " + s1 );
