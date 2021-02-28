@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-	private bool tileRevelada;      // indicador da carta virada ou não
+	private bool tileRevelada;              // indicador da carta virada ou não
 	public Sprite originalCarta;            // Sprite da carta desejada
+	public Sprite novaCarta;                // Update da Carta
 	public Sprite backCarta;                // Sprite do avesso da carta
 
 	// Start is called before the first frame update
@@ -46,5 +47,10 @@ public class Tile : MonoBehaviour
 	{
 		GetComponent<SpriteRenderer>().sprite = originalCarta;
 		tileRevelada = true;
+	}
+
+	public void SetCartaOriginal()
+	{
+		originalCarta = novaCarta;
 	}
 }

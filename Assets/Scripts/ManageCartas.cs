@@ -20,6 +20,23 @@ public class ManageCartas : MonoBehaviour
 
 	void MostraCartas()
 	{
-		Instantiate( carta, new Vector3( 0, 0, 0 ), Quaternion.identity );
+		// Instantiate( carta, new Vector3( 0, 0, 0 ), Quaternion.identity );
+		//  AddUmaCarta();
+
+		for ( int i = 0; i < 13; i++ )
+		{
+			AddUmaCarta( i );
+		}
+	}
+
+
+	void AddUmaCarta(int rank)
+	{
+		GameObject centro = GameObject.Find( "centroDaTela" );
+		Vector3 novaPosicao = new Vector3( centro.transform.position.x + ((rank - 13 / 2) * 1.2f), centro.transform.position.y, centro.transform.position.z );
+
+		// GameObject c = Instantiate( carta, new Vector3( 0, 0, 0 ), Quaternion.identity );
+		// GameObject c = Instantiate( carta, new Vector3( rank * 1.5f, 0, 0 ), Quaternion.identity );
+		GameObject c = Instantiate( carta, novaPosicao, Quaternion.identity );
 	}
 }
