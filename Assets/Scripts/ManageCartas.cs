@@ -94,7 +94,7 @@ public class ManageCartas : MonoBehaviour
 		// GameObject c = Instantiate( carta, new Vector3( 0, 0, 0 ), Quaternion.identity );
 		// GameObject c = Instantiate( carta, new Vector3( rank * 1.5f, 0, 0 ), Quaternion.identity );
 		GameObject c = Instantiate( carta, novaPosicao, Quaternion.identity );
-		c.tag = "" + (valor + 1);
+		c.tag = "" + valor;
 
 		// c.name = "" + valor;
 		c.name = "" + linha + "_" + valor;
