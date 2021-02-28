@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class ManageCartas : MonoBehaviour
 {
@@ -44,5 +45,26 @@ public class ManageCartas : MonoBehaviour
 		// GameObject c = Instantiate( carta, new Vector3( rank * 1.5f, 0, 0 ), Quaternion.identity );
 		GameObject c = Instantiate( carta, novaPosicao, Quaternion.identity );
 		c.tag = "" + rank;
+		c.name = "" + rank;
+
+		string numeroCarta;
+
+		if ( rank == 0 )
+			numeroCarta = "ace";
+		else if ( rank == 10 )
+			numeroCarta = "jack";
+		else if ( rank == 11 )
+			numeroCarta = "queen";
+		else if ( rank == 12 )
+			numeroCarta = "king";
+		else
+			numeroCarta = "" + (rank + 1);
+
+		string nomeDaCarta = numeroCarta + "_of_clubs";
+
+		Sprite s1 = Resources.Load<Sprite>( nomeDaCarta );
+		print( "S1: " + s1 );
+
+		GameObject.Find( "" + rank ).GetComponent<Tile>().SetCartaOriginal( s1 );
 	}
 }
