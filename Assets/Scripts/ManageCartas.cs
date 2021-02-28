@@ -19,6 +19,8 @@ public class ManageCartas : MonoBehaviour
 	int numAcertos = 0;                         // numero de match de pares acertados
 	AudioSource somOk;                          // som de acerto
 
+	int ultimoJogo = 0;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -26,6 +28,9 @@ public class ManageCartas : MonoBehaviour
 		UpdateTentativas();
 
 		somOk = GetComponent<AudioSource>();
+
+		ultimoJogo = PlayerPrefs.GetInt( "Jogadas", 0 );
+		GameObject.Find( "ultimaJogada" ).GetComponent<Text>().text = "Jogo Anterior = " + ultimoJogo;
 	}
 
 	// Update is called once per frame
@@ -51,6 +56,7 @@ public class ManageCartas : MonoBehaviour
 					numAcertos++;
 					if ( numAcertos == 13 )
 					{
+						PlayerPrefs.SetInt( "Jogadas", numTentativas );
 						SceneManager.LoadScene( SceneManager.GetActiveScene().name );
 					}
 				}
