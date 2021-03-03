@@ -26,6 +26,7 @@ public class ManageCartas : MonoBehaviour
 	{
 		MostraCartas();
 		UpdateTentativas();
+		UpdateRecorde();
 
 		somOk = GetComponent<AudioSource>();
 
@@ -54,9 +55,12 @@ public class ManageCartas : MonoBehaviour
 					Destroy( carta2 );
 
 					numAcertos++;
-					if ( numAcertos == 26 )
+					if ( numAcertos == 13 * 2 )
 					{
+						int recorde = Mathf.Min( numTentativas, PlayerPrefs.GetInt( "Recorde", 99999 ) );
+
 						PlayerPrefs.SetInt( "Jogadas", numTentativas );
+						PlayerPrefs.SetInt( "Recorde", recorde );
 						SceneManager.LoadScene( SceneManager.GetActiveScene().name );
 					}
 				}
@@ -235,5 +239,12 @@ public class ManageCartas : MonoBehaviour
 	{
 		numTentativas++;
 		GameObject.Find( "numTentativas" ).GetComponent<Text>().text = "Tentativas = " + numTentativas;
+	}
+
+
+	void UpdateRecorde()
+	{
+		int recorde = PlayerPrefs.GetInt( "Recorde", 0 );
+		GameObject.Find( "recorde" ).GetComponent<Text>().text = "Recorde = " + recorde;
 	}
 }
