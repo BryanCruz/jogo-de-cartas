@@ -203,8 +203,13 @@ public class ManageCartas : MonoBehaviour
 		}
 		else if ( primeiraCartaSelecionada && !segundaCartaSelecionada )
 		{
+			// não seleciona a segunda carta se for a que já está selecionada
+			if ( carta1.name == carta.name )
+				return;
+
 			string linha = carta.name.Substring( 0, 1 );
 			linhaCarta2 = linha;
+
 
 			segundaCartaSelecionada = true;
 			carta2 = carta;
