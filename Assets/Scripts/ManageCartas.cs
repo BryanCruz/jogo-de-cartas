@@ -54,7 +54,7 @@ public class ManageCartas : MonoBehaviour
 					Destroy( carta2 );
 
 					numAcertos++;
-					if ( numAcertos == 13 )
+					if ( numAcertos == 26 )
 					{
 						PlayerPrefs.SetInt( "Jogadas", numTentativas );
 						SceneManager.LoadScene( SceneManager.GetActiveScene().name );
@@ -82,18 +82,25 @@ public class ManageCartas : MonoBehaviour
 
 	void MostraCartas()
 	{
-		int[] arrayEmbaralhado = CriaArrayEmbaralhado();
-		int[] arrayEmbaralhado2 = CriaArrayEmbaralhado();
+		// int[] arrayEmbaralhado = CriaArrayEmbaralhado();
+		// int[] arrayEmbaralhado2 = CriaArrayEmbaralhado();
 
 		// Instantiate( carta, new Vector3( 0, 0, 0 ), Quaternion.identity );
 		//  AddUmaCarta();
 
-		for ( int i = 0; i < 13; i++ )
+		for ( int linha = 0; linha < 4; linha++ )
 		{
-			// AddUmaCarta( i );
-			// AddUmaCarta( i, arrayEmbaralhado[i] );
-			AddUmaCarta( 0, i, arrayEmbaralhado[i] );
-			AddUmaCarta( 1, i, arrayEmbaralhado2[i] );
+			int[] arrayEmbaralhado = CriaArrayEmbaralhado();
+
+			for ( int i = 0; i < 13; i++ )
+			{
+
+				// AddUmaCarta( i );
+				// AddUmaCarta( i, arrayEmbaralhado[i] );
+				// AddUmaCarta( 0, i, arrayEmbaralhado[i] );
+				// AddUmaCarta( 0, i, arrayEmbaralhado[i]2 );
+				AddUmaCarta( linha, i, arrayEmbaralhado[i] );
+			}
 		}
 	}
 
@@ -108,7 +115,7 @@ public class ManageCartas : MonoBehaviour
 
 		// Vector3 novaPosicao = new Vector3( centro.transform.position.x + ((rank - 13 / 2) * 1.2f), centro.transform.position.y, centro.transform.position.z );
 		// Vector3 novaPosicao = new Vector3( centro.transform.position.x + ((rank - 13 / 2) * fatorEscalaX), centro.transform.position.y, centro.transform.position.z );
-		Vector3 novaPosicao = new Vector3( centro.transform.position.x + ((rank - 13 / 2) * fatorEscalaX), centro.transform.position.y + ((linha - 2 / 2) * fatorEscalaY), centro.transform.position.z );
+		Vector3 novaPosicao = new Vector3( centro.transform.position.x + ((rank - 13 / 2) * fatorEscalaX), centro.transform.position.y + ((linha - 4 / 2) * fatorEscalaY), centro.transform.position.z );
 
 		// GameObject c = Instantiate( carta, new Vector3( 0, 0, 0 ), Quaternion.identity );
 		// GameObject c = Instantiate( carta, new Vector3( rank * 1.5f, 0, 0 ), Quaternion.identity );
@@ -120,9 +127,13 @@ public class ManageCartas : MonoBehaviour
 
 		string naipe;
 		if ( linha == 0 )
-			naipe = "clubs";
-		else
+			naipe = "diamonds";
+		else if ( linha == 1 )
+			naipe = "spades";
+		else if ( linha == 2 )
 			naipe = "hearts";
+		else
+			naipe = "clubs";
 
 		string numeroCarta;
 
