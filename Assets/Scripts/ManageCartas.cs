@@ -55,13 +55,17 @@ public class ManageCartas : MonoBehaviour
 					Destroy( carta2 );
 
 					numAcertos++;
-					if ( numAcertos == 13 * 2 )
+					//if ( numAcertos == 13 * 2 )
+					if ( numAcertos == 2 )
 					{
-						int recorde = Mathf.Min( numTentativas, PlayerPrefs.GetInt( "Recorde", 99999 ) );
+						int antigoRecorde = PlayerPrefs.GetInt( "Recorde", 99999 );
+						int recorde = Mathf.Min( numTentativas, antigoRecorde );
 
 						PlayerPrefs.SetInt( "Jogadas", numTentativas );
 						PlayerPrefs.SetInt( "Recorde", recorde );
-						SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+						PlayerPrefs.SetInt( "AntigoRecorde", antigoRecorde );
+						//						SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+						SceneManager.LoadScene( "Lab3_Restart" );
 					}
 				}
 				else
