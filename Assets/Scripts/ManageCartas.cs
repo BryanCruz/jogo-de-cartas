@@ -55,8 +55,7 @@ public class ManageCartas : MonoBehaviour
 					Destroy( carta2 );
 
 					numAcertos++;
-					//if ( numAcertos == 13 * 2 )
-					if ( numAcertos == 2 )
+					if ( numAcertos == 13 * 2 )
 					{
 						int antigoRecorde = PlayerPrefs.GetInt( "Recorde", 99999 );
 						int recorde = Mathf.Min( numTentativas, antigoRecorde );
