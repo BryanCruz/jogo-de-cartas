@@ -21,4 +21,9 @@ public class ManageButton : MonoBehaviour
 	{
 		SceneManager.LoadScene( "Lab3" );
 	}
+
+	public void Creditos()
+	{
+		SceneManager.LoadScene( "Lab3_Creditos" );
+	}
 }
