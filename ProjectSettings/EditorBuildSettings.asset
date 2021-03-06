@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lab3_Creditos.unity
     guid: 2369052531302c0448e63f53cab18cfd
+  - enabled: 1
+    path: Assets/Scenes/Lab3_Restart.unity
+    guid: 7f18533eebaac4f49a9e8874ad4d4f61
   m_configObjects: {}
